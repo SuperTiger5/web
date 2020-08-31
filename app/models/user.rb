@@ -62,5 +62,4 @@ class User < ApplicationRecord
       all #全て表示。User.は省略
     end
   end
-
 end
