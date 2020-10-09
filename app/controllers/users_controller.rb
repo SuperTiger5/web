@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:show, :index, :destroy, :edit, :update]
-  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
+  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info, :working_user]
   before_action :admin_or_correct_user, only: :show
   before_action :set_one_month, only: :show
   
@@ -63,6 +63,12 @@ class UsersController < ApplicationController
     end
     redirect_to users_url
   end
+  
+  def working_user
+    @attendances = Attendance.where(worked_on: Date.current).where.not(started_at: nil).where(finished_at: nil)
+  end
+  
+  
 
   private
     
@@ -71,10 +77,10 @@ class UsersController < ApplicationController
     end
     
     def basic_info_params
-      params.require(:user).permit(:basic_time, :work_time)
+      params.require(:user).permit(:department, :basic_time, :work_time)
     end
     
     def admin_or_correct_user
-    redirect_to root_url unless current_user.admin? || @user == current_user
+      redirect_to root_url unless current_user.admin? || @user == current_user
     end
 end

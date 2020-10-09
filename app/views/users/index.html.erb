@@ -1,14 +1,14 @@
-<% provide(:title, "ユーザー一覧") %>
+<% provide(:title, "社員一覧") %>
 <h1 class = "text-center">
   <% if params[:search] %>
     検索結果
   <% else %>
-    ユーザー一覧
+    社員一覧
   <% end %>
 </h1>
  
 <%= form_tag(users_path, :method => 'get', class: "pull-right") do %>
-  <p class = "label-search">ユーザー名検索</p>
+  <p class = "label-search">社員検索</p>
   <%= text_field_tag :search %>
   <%= submit_tag '検索', :name => nil, class: "btn btn-sm btn-primary pull-right btn-search" %>
 <% end %> 

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'places/index'
+
   root 'static_pages#top'
   get '/signup', to: 'users#new'
   
@@ -6,6 +8,8 @@ Rails.application.routes.draw do
   get    '/login', to: 'sessions#new'      #ログインページへ
   post   '/login', to: 'sessions#create'   #ログイン(セッション作成)
   delete '/logout', to: 'sessions#destroy' #ログアウト(セッション削除)
+  
+  get 'working_user', to: 'users#working_user'
   
   resources :users do
     member do
@@ -17,4 +21,6 @@ Rails.application.routes.draw do
     end
     resources :attendances, only: :update
   end
+  
+  
 end

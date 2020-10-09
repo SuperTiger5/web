@@ -1,0 +1,17 @@
+<% provide(:title, "出勤社員一覧") %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>出勤社員一覧</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @attendances.each do |attendance| %>
+    <tr>
+      <td><%= link_to User.find(attendance.user_id).name, user_path(attendance.user_id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

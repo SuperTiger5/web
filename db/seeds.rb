@@ -1,5 +1,5 @@
 User.create!(name: "Sample User",
-             email: "sample@email.com",
+             email: "admin@email.com",
              admin: true,
              password: "password",
              password_confirmation: "password")
@@ -14,4 +14,6 @@ User.create!(name: "Sample User",
                password_confirmation: password
         )
 end
+
+p "Seedデータ作成完了！"
 
