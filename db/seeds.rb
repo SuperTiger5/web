@@ -15,5 +15,5 @@ User.create!(name: "Sample User",
         )
 end
 
-p "Seedデータ作成完了！"
+p "Userデータ作成完了！"
 
