@@ -27,7 +27,7 @@ module SessionsHelper
   
   # 一時的セッションにいるユーザーを返します。
   # それ以外の場合はcookiesに対応するユーザーを返します。
-  # 現在ログイン中のユーザー」
+  # 現在ログイン中のユーザー
   def current_user
     if (user_id = session[:user_id])
       @current_user ||= User.find_by(id: user_id)

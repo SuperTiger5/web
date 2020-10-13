@@ -1,5 +1,4 @@
 <% provide(:class_text, 'basic-info') %>
-<% provide(:button_text, '更新') %>
 
 <div class="modal-dialog modal-lg modal-dialog-center">
   <div class="modal-content">
@@ -15,21 +14,21 @@
           <%= form_with(model: @user, url: update_basic_info_user_path(@user), local: true, method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @user %>
 
-            <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+            <%= f.label :name, class: "label-basic-info" %>
             <p><%= @user.name %></p>
 
-            <%= f.label :department, class: "label-#{yield(:class_text)}" %>
+            <%= f.label :department, class: "label-basic-info" %>
             <%= f.text_field :department, class: "form-control" %>
 
-            <%= f.label :basic_time, class: "label-#{yield(:class_text)}" %>
+            <%= f.label :basic_time, class: "label-basic-info" %>
             <%= f.time_field :basic_time, class: "form-control" %>
 
-            <%= f.label :work_time, class: "label-#{yield(:class_text)}" %>
+            <%= f.label :work_time, class: "label-basic-info" %>
             <%= f.time_field :work_time, class: "form-control" %>
 
             <div class="center">
-              <%= f.submit yield(:button_text), class: "btn btn-primary btn-#{yield(:class_text)}" %>
-              <button type="button" class="btn btn-default btn-<%= yield(:class_text) %>" data-dismiss="modal">
+              <%= f.submit "更新", class: "btn btn-primary btn-basic-info" %>
+              <button type="button" class="btn btn-default btn-basic-info" data-dismiss="modal">
                 キャンセル
               </button>
             </div>

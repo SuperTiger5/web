@@ -1,5 +1,6 @@
 User.create!(name: "Sample User",
              email: "admin@email.com",
+             work_place_of_user: "大阪",
              admin: true,
              password: "password",
              password_confirmation: "password")
@@ -8,8 +9,10 @@ User.create!(name: "Sample User",
   name = Faker::Name.name
   email = "sample#{n+1}@email.com"
   password = "password"
+  work_place_of_user = "大阪"
   User.create!(name:  name,
                email:  email,
+               work_place_of_user: work_place_of_user,
                password: password,
                password_confirmation: password
         )
