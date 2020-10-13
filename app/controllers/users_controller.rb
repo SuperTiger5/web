@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   end
   
   def working_user
-    @attendances = Attendance.where(worked_on: Date.current).where.not(started_at: nil).where(finished_at: nil)
+    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
   end
   
   
