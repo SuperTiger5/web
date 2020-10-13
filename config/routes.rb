@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'working_user_osaka', to: 'users#working_user_osaka'
   get 'working_user_tokyo', to: 'users#working_user_tokyo'
   get 'working_user_nagoya', to: 'users#working_user_nagoya'
+  
   get 'osaka', to: 'users#index_osaka'
   get 'tokyo', to: 'users#index_tokyo'
   get 'nagoya', to: 'users#index_nagoya'
