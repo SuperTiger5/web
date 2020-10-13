@@ -5,7 +5,6 @@ User.create!(name: "Sample User",
              password: "password",
              password_confirmation: "password")
 
-
 33.times do |n| #0～32
   name = Faker::Name.name
   email = "sample#{n+2}@email.com"
