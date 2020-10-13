@@ -1,20 +1,20 @@
-<% provide(:title, "社員一覧") %>
+<% provide(:title, "従業員一覧") %>
 
 <h1 class = "text-center">
   <% if params[:search] %>
     検索結果
   <% else %>
-    社員一覧
+    従業員一覧
   <% end %>
 </h1>
 <div>
-  <%= link_to "大阪本店の社員一覧", osaka_path, class: "btn btn-success btn-place" %>
-  <%= link_to "東京支店の社員一覧", tokyo_path, class: "btn btn-warning btn-place" %>
-  <%= link_to "名古屋支店の社員一覧", nagoya_path, class: "btn btn-info btn-place" %>
+  <%= link_to "大阪本店の従業員一覧", osaka_path, class: "btn btn-success btn-place" %>
+  <%= link_to "東京支店の従業員一覧", tokyo_path, class: "btn btn-warning btn-place" %>
+  <%= link_to "名古屋支店の従業員一覧", nagoya_path, class: "btn btn-info btn-place" %>
 </div>
 
 <%= form_tag(users_path, :method => 'get', class: "pull-right") do %>
-  <p class = "label-search">社員検索</p>
+  <p class = "label-search">従業員検索</p>
   <%= text_field_tag :search %>
   <%= submit_tag '検索', :name => nil, class: "btn btn-sm btn-primary pull-right btn-search" %>
 <% end %> 
@@ -24,7 +24,8 @@
     <thead>
       <tr>
         <th><%= User.human_attribute_name :name %></th>
-        <th><%= User.human_attribute_name :department %></th>
+        <th><%= User.human_attribute_name :occupation %></th>
+        <th><%= User.human_attribute_name :employment_status %></th>
         <th><%= User.human_attribute_name :basic_time %></th>
         <th><%= User.human_attribute_name :work_time %></th>
         <th><%= User.human_attribute_name :work_place_of_user %></th>
@@ -34,7 +35,8 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
-        <td><%= user.department? ? user.department : "未所属" %></td>
+        <td><%= user.occupation %></td>
+        <td><%= user.employment_status %></td>
         <td><%= format_basic_info(user.basic_time) %></td>
         <td><%= format_basic_info(user.work_time) %></td>
         <td><%= user.work_place_of_user %></td>
@@ -53,3 +55,4 @@
 </div>
 
 <div id="edit-basic-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+

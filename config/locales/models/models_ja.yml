@@ -8,7 +8,8 @@ ja:
           name: 名前
           email: メールアドレス
           work_place_of_user: 勤務地
-          department: 所属
+          employment_status: 勤務形態
+          occupation: 職種
           password: パスワード
           password_confirmation: パスワード再入力
           basic_time: 基本時間

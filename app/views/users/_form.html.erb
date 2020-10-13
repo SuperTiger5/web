@@ -6,13 +6,21 @@
 
       <%= f.label :email, class: "label-user--edit" %>
       <%= f.email_field :email, class: "form-control" %>
-      
-      <%= f.label :department, class: "label-user--edit" %>
-      <%= f.text_field :department, class: "form-control" %>
-      
-      <%= f.label :work_place_of_user, class: "label-user--edit" %>
-      <%= f.select :work_place_of_user, {'大阪本社': "大阪本社", '東京支社': '東京支社', '名古屋支社': '名古屋支社'}, { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
 
+      <%= f.label :work_place_of_user, class: "label-user--edit" %>
+      <%= f.select :work_place_of_user, {'大阪本社': "大阪本社", '東京支社': '東京支社', '名古屋支社': '名古屋支社'}, 
+      { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+
+      <%= f.label :employment_status, class: "label-user--edit" %>
+      <%= f.select :employment_status, {'正社員': "正社員", '契約社員': '契約社員',
+                                        'アルバイト': 'アルバイト', '派遣社員': "派遣社員",
+                                        'フリーランス': "フリーランス"},
+      { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+      
+      <%= f.label :occupation, class: "label-user--edit" %>
+      <%= f.select :occupation, {'エンジニア': "エンジニア", '事務員': '事務員',},
+      { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+      
       <%= f.label :password, class: "label-user--edit}" %>
       <%= f.password_field :password, class: "form-control" %>
 

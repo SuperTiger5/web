@@ -26,8 +26,9 @@ ActiveRecord::Schema.define(version: 20200816052340) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "department"
     t.string "work_place_of_user"
+    t.string "employment_status", default: "正社員"
+    t.string "occupation", default: "エンジニア"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

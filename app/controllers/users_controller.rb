@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update, :edit_basic_info, :update_basic_info]
-  before_action :logged_in_user, only: [:show, :index, :destroy, :edit, :update, :index_osaka, :index_tokyo, :index_nagoya]
-  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info, :working_user]
+  before_action :logged_in_user, only: [:show, :index, :destroy, :edit, :update, :index_osaka, :index_tokyo, :index_nagoya,
+                                        :working_user_osaka, :working_user_tokyo, :working_user_nagoya]
+  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info, :working_user,
+                                    :working_user_osaka, :working_user_tokyo, :working_user_nagoya]
   before_action :admin_or_correct_user, only: :show
   before_action :set_one_month, only: :show
   
@@ -78,12 +80,24 @@ class UsersController < ApplicationController
     @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
   end
   
+  def working_user_osaka
+    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+    
+  end
   
-
+  def working_user_tokyo
+    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+  end
+  
+  def working_user_nagoya
+    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+  end
+    
   private
     
     def user_params
-      params.require(:user).permit(:name, :email, :department, :work_place_of_user, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :department, :work_place_of_user, 
+                                   :employment_status, :occupation, :password, :password_confirmation)
     end
     
     def basic_info_params
