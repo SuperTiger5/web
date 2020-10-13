@@ -9,14 +9,19 @@
     <tr>
       <th>出勤従業員一覧</th>
       <th><%= User.human_attribute_name :work_place_of_user %></th>
+      <th><%= User.human_attribute_name :employment_status %></th>
+      <th><%= User.human_attribute_name :work_place_of_user %></th>
     </tr>
   </thead>
   
   <tbody>
     <% @attendances.each do |attendance| %>
     <tr>
-      <td><%= link_to User.find(attendance.user_id).name, user_path(attendance.user_id) %></td>
-      <td><%= User.find(attendance.user_id).work_place_of_user %></td>
+      <% user = User.find(attendance.user_id) %>
+      <td><%= link_to User.find(user.id).name, user_path(user.id) %></td>
+      <td><%= user.occupation %></td>
+      <td><%= user.employment_status %></td>
+      <td><%= user.work_place_of_user %></td>
     </tr>
     <% end %>
   </tbody>

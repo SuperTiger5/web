@@ -9,6 +9,8 @@
   <thead>
     <tr>
       <th><%= yield(:place) %>の出勤従業員一覧</th>
+      <th><%= User.human_attribute_name :occupation %></th>
+      <th><%= User.human_attribute_name :employment_status %></th>
       <th><%= User.human_attribute_name :work_place_of_user %></th>
     </tr>
   </thead>
@@ -19,6 +21,8 @@
         <tr>
           <% if user.work_place_of_user == yield(:place) %>
             <td><%= link_to user.name, user_path(user) %></td>
+            <td><%= user.occupation %></td>
+            <td><%= user.employment_status %></td>
             <td><%= user.work_place_of_user %></td>
           <% end %>
         </tr>
