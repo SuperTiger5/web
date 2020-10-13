@@ -1,23 +1,21 @@
-<% provide(:title, "社員一覧") %>
+<% provide(:title, "名古屋社員") %>
 
 <h1 class = "text-center">
   <% if params[:search] %>
     検索結果
   <% else %>
-    社員一覧
+    名古屋支店の社員一覧
   <% end %>
 </h1>
-<div>
-  <%= link_to "大阪本店の社員一覧", osaka_path, class: "btn btn-success btn-place" %>
-  <%= link_to "東京支店の社員一覧", tokyo_path, class: "btn btn-warning btn-place" %>
-  <%= link_to "名古屋支店の社員一覧", nagoya_path, class: "btn btn-info btn-place" %>
-</div>
-
-<%= form_tag(users_path, :method => 'get', class: "pull-right") do %>
+ 
+<%= form_tag(nagoya_path, :method => 'get', class: "pull-right") do %>
   <p class = "label-search">社員検索</p>
   <%= text_field_tag :search %>
   <%= submit_tag '検索', :name => nil, class: "btn btn-sm btn-primary pull-right btn-search" %>
 <% end %> 
+
+<h1><%= link_to "全社員一覧", users_path, class: "btn btn-big btn-danger" %></h1>
+
 <div class = "col-md-10 col-md-offset-1">
   <%= will_paginate %>
   <table class = "table table-condensed table-hover" id = "table-users">

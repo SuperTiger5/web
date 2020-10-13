@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :destroy, :edit, :update, :edit_basic_info, :update_basic_info]
-  before_action :logged_in_user, only: [:show, :index, :destroy, :edit, :update]
+  before_action :logged_in_user, only: [:show, :index, :destroy, :edit, :update, :index_osaka, :index_tokyo, :index_nagoya]
   before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info, :working_user]
   before_action :admin_or_correct_user, only: :show
   before_action :set_one_month, only: :show
@@ -22,6 +22,18 @@ class UsersController < ApplicationController
   
   def index
     @users = User.paginate(page: params[:page], per_page: 20).search(params[:search])
+  end
+  
+  def index_osaka
+    @users = User.where(work_place_of_user: "大阪").paginate(page: params[:page], per_page: 20).search(params[:search])
+  end
+  
+  def index_tokyo
+    @users = User.where(work_place_of_user: "東京").paginate(page: params[:page], per_page: 20).search(params[:search])
+  end
+  
+  def index_nagoya
+    @users = User.where(work_place_of_user: "名古屋").paginate(page: params[:page], per_page: 20).search(params[:search])
   end
   
   def show

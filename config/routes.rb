@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy' #ログアウト(セッション削除)
   
   get 'working_user', to: 'users#working_user'
+  get 'osaka', to: 'users#index_osaka'
+  get 'tokyo', to: 'users#index_tokyo'
+  get 'nagoya', to: 'users#index_nagoya'
   
   resources :users do
     member do
