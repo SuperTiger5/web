@@ -1,4 +1,9 @@
-<%= link_to "全拠点の出勤従業員一覧", working_user_path, class: "btn btn-danger" %>
+<div>
+<%= link_to "全拠点の出勤従業員一覧", working_user_path, class: "btn btn-danger btn-place" %>
+<%= link_to "大阪本社の出勤者一覧", working_user_osaka_path, class: "btn btn-success btn-place btn-place" %>
+<%= link_to "東京支社の出勤者一覧", working_user_tokyo_path, class: "btn btn-warning btn-place btn-place" %>
+<%= link_to "名古屋支社の出勤者一覧", working_user_nagoya_path, class: "btn btn-info btn-place btn-place" %>
+</div>
 
 <table class="table table-striped table-bordered table-work">
   <thead>
