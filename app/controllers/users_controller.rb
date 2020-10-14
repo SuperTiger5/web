@@ -101,7 +101,7 @@ class UsersController < ApplicationController
     end
     
     def basic_info_params
-      params.require(:user).permit(:department, :basic_time, :work_time)
+      params.require(:user).permit(:occupation, :employment_status, :basic_time, :work_time)
     end
     
     def admin_or_correct_user

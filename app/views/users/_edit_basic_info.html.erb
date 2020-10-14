@@ -17,8 +17,15 @@
             <%= f.label :name, class: "label-basic-info" %>
             <p><%= @user.name %></p>
 
-            <%= f.label :department, class: "label-basic-info" %>
-            <%= f.text_field :department, class: "form-control" %>
+            <%= f.label :employment_status, class: "label-user--edit" %>
+            <%= f.select :employment_status, {'正社員': "正社員", '契約社員': '契約社員',
+                                        'アルバイト': 'アルバイト', '派遣社員': "派遣社員",
+                                        'フリーランス': "フリーランス"},
+             { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
+      
+            <%= f.label :occupation, class: "label-user--edit" %>
+            <%= f.select :occupation, {'エンジニア': "エンジニア", '事務員': '事務員',},
+            { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
 
             <%= f.label :basic_time, class: "label-basic-info" %>
             <%= f.time_field :basic_time, class: "form-control" %>
