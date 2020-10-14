@@ -14,27 +14,27 @@
           <%= form_with(model: @user, url: update_basic_info_user_path(@user), local: true, method: :patch) do |f| %>
             <%= render 'shared/error_messages', object: @user %>
 
-            <%= f.label :name, class: "label-basic-info" %>
+            <%= f.label :name, class: "label-#{yield(:class_text)}" %>
             <p><%= @user.name %></p>
 
-            <%= f.label :employment_status, class: "label-user--edit" %>
+            <%= f.label :employment_status, class: "label-#{yield(:class_text)}" %>
             <%= f.select :employment_status, {'正社員': "正社員", '契約社員': '契約社員',
                                         'アルバイト': 'アルバイト', '派遣社員': "派遣社員",
                                         'フリーランス': "フリーランス"},
              { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
       
-            <%= f.label :occupation, class: "label-user--edit" %>
+            <%= f.label :occupation, class: "label-#{yield(:class_text)}" %>
             <%= f.select :occupation, {'エンジニア': "エンジニア", '事務員': '事務員',},
             { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
 
-            <%= f.label :basic_time, class: "label-basic-info" %>
+            <%= f.label :basic_time, class: "label-#{yield(:class_text)}" %>
             <%= f.time_field :basic_time, class: "form-control" %>
 
-            <%= f.label :work_time, class: "label-basic-info" %>
+            <%= f.label :work_time, class: "label-#{yield(:class_text)}" %>
             <%= f.time_field :work_time, class: "form-control" %>
 
             <div class="center">
-              <%= f.submit "更新", class: "btn btn-primary btn-basic-info" %>
+              <%= f.submit "更新", class: "btn btn-primary btn-#{yield(:class_text)}" %>
               <button type="button" class="btn btn-default btn-basic-info" data-dismiss="modal">
                 キャンセル
               </button>
