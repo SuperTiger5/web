@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root 'static_pages#top'
   get '/signup', to: 'users#new'
   
-  # ログイン機能
   get    '/login', to: 'sessions#new'      #ログインページへ
   post   '/login', to: 'sessions#create'   #ログイン(セッション作成)
   delete '/logout', to: 'sessions#destroy' #ログアウト(セッション削除)
