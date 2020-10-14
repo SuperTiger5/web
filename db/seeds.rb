@@ -1,4 +1,4 @@
-User.create!(name: "Sample User",
+User.create!(name: "Admin User",
              email: "admin@email.com",
              work_place_of_user: "大阪",
              admin: true,
@@ -116,6 +116,22 @@ end
               work_place_of_user: work_place_of_user,
               employment_status: employment_status,
               occupation: occupation,
+              password: password,
+              password_confirmation: password
+        )
+end
+
+
+10.times do |n|
+  name = Faker::Name.name
+  email = "sample#{n+151}@email.com"
+  password = "password"
+  work_place_of_user = "大阪"
+  employment_status = "派遣社員"
+  User.create!(name:  name,
+              email:  email,
+              work_place_of_user: work_place_of_user,
+              employment_status: employment_status,
               password: password,
               password_confirmation: password
         )

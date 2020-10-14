@@ -18,7 +18,7 @@
     <% @attendances.each do |attendance| %>
     <tr>
       <% user = User.find(attendance.user_id) %>
-      <td><%= link_to User.find(user.id).name, user_path(user.id) %></td>
+      <td><%= link_to user.name, user_path(user.id) %></td>
       <td><%= user.occupation %></td>
       <td><%= user.employment_status %></td>
       <td><%= user.work_place_of_user %></td>
