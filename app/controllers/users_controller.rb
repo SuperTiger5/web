@@ -82,7 +82,6 @@ class UsersController < ApplicationController
   
   def working_user_osaka
     @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
-    
   end
   
   def working_user_tokyo
