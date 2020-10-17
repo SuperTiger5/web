@@ -16,7 +16,7 @@
           <%= link_to "残業承認を取り消す。", cancel_approval_user_attendance_path(@user, attendance), 
                     method: :delete,
                     data: { confirm: "許可した残業承認を取り消しますか？" },
-                class: "btn btn-primary" %>
+                class: "btn btn-danger" %>
         </td>
       </tr>
     <% end %>
