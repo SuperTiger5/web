@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 'tokyo', to: 'users#index_tokyo'
   get 'nagoya', to: 'users#index_nagoya'
   
+  get 'request/users', to: 'attendances#request_users'
+  
   resources :users do
     member do
       get 'edit_basic_info'
@@ -24,7 +26,12 @@ Rails.application.routes.draw do
       get 'attendances/edit_one_month'
       patch 'attendances/update_one_month'
     end
-    resources :attendances, only: :update
+    resources :attendances, only: :update do
+      member do
+        patch 'update_request'
+        patch 'update_approval'
+      end
+    end
   end
   
   

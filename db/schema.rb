@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 20200816052340) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.string "note"
+    t.string "overtime_request"
+    t.string "overtime_approval"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,8 +36,8 @@ ActiveRecord::Schema.define(version: 20200816052340) do
     t.string "password_digest"
     t.string "remember_digest"
     t.boolean "admin", default: false
-    t.datetime "basic_time", default: "2020-10-13 23:00:00"
-    t.datetime "work_time", default: "2020-10-13 22:30:00"
+    t.datetime "basic_time", default: "2020-10-17 23:00:00"
+    t.datetime "work_time", default: "2020-10-17 22:30:00"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

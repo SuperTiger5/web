@@ -1,0 +1,23 @@
+<% provide(:title, "残業申請者") %>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendances.each do |attendance| %>
+    <% @user = User.find(attendance.user_id) %>
+      <tr>
+        <td><%= link_to @user.name, @user %></td>
+        <td>
+          <%= link_to "残業を許可します。", update_approval_user_attendance_path(@user, attendance), method: :patch,
+                    data: { confirm: "残業を許可しますか？" },
+                class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

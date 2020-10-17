@@ -5,6 +5,8 @@ class CreateAttendances < ActiveRecord::Migration[5.1]
       t.datetime :started_at
       t.datetime :finished_at
       t.string :note
+      t.string :overtime_request
+      t.string :overtime_approval
       t.references :user, foreign_key: true
 
       t.timestamps

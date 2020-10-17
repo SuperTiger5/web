@@ -3,7 +3,8 @@ class AttendancesController < ApplicationController
   
   before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user
-  before_action :admin_or_correct_user
+  before_action :admin_or_correct_user, except: [:update_request, :update_approval, :request_users]
+  before_action :admin_user, only: [:update_approval, :request_users]
   before_action :set_one_month, only: :edit_one_month
   
   UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してください。"
@@ -49,6 +50,23 @@ class AttendancesController < ApplicationController
       redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
 
+  def update_request
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+    @attendance.update_attributes!(overtime_request: "1")
+    redirect_to user_url(@user)
+  end
+  
+  def request_users
+    @attendances = Attendance.where(worked_on: Date.current, overtime_request: "1", overtime_approval: nil)
+  end
+  
+  def update_approval
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+    @attendance.update_attributes(overtime_approval: "1")
+    redirect_to @user
+  end
   
   private
   
