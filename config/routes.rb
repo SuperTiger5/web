@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'nagoya', to: 'users#index_nagoya'
   
   get 'request/users', to: 'attendances#request_users'
+  get 'approval/users', to: 'attendances#approval_users'
   
   resources :users do
     member do
@@ -30,6 +31,8 @@ Rails.application.routes.draw do
       member do
         patch 'update_request'
         patch 'update_approval'
+        delete 'cancel_request'
+        delete 'cancel_approval'
       end
     end
   end

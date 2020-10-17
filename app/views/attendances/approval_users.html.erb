@@ -1,0 +1,24 @@
+<% provide(:title, "残業") %>
+
+<table class="table table-bordered table-striped table-hover">
+  <thead>
+    <tr>
+      <th>名前</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @attendances.each do |attendance| %>
+    <% @user = User.find(attendance.user_id) %>
+      <tr>
+        <td><%= link_to @user.name, @user %></td>
+        <td>
+          <%= link_to "残業承認を取り消す。", cancel_approval_user_attendance_path(@user, attendance), 
+                    method: :delete,
+                    data: { confirm: "許可した残業承認を取り消しますか？" },
+                class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

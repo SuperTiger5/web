@@ -3,8 +3,9 @@ class AttendancesController < ApplicationController
   
   before_action :set_user, only: [:edit_one_month, :update_one_month]
   before_action :logged_in_user
-  before_action :admin_or_correct_user, except: [:update_request, :update_approval, :request_users]
-  before_action :admin_user, only: [:update_approval, :request_users]
+  before_action :admin_or_correct_user, except: [:update_request, :update_approval, :cancel_request, :request_users,
+                                                 :approval_users, :update_approval, :cancel_approval, :request_users]
+  before_action :admin_user, only: [:update_approval, :cancel_approval, :request_users, :approval_users]
   before_action :set_one_month, only: :edit_one_month
   
   UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してください。"
@@ -61,10 +62,28 @@ class AttendancesController < ApplicationController
     @attendances = Attendance.where(worked_on: Date.current, overtime_request: "1", overtime_approval: nil)
   end
   
+  def approval_users
+    @attendances = Attendance.where(worked_on: Date.current, overtime_approval: "1")
+  end
+  
   def update_approval
     @user = User.find(params[:user_id])
     @attendance = Attendance.find(params[:id])
-    @attendance.update_attributes(overtime_approval: "1")
+    @attendance.update_attributes!(overtime_approval: "1")
+    redirect_to @user
+  end
+  
+  def cancel_request
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+    @attendance.update_attributes(overtime_request: nil)
+    redirect_to @user
+  end
+  
+  def cancel_approval
+    @user = User.find(params[:user_id])
+    @attendance = Attendance.find(params[:id])
+    @attendance.update_attributes(overtime_request: nil, overtime_approval: nil)
     redirect_to @user
   end
   
