@@ -8,7 +8,7 @@
       <%= f.email_field :email, class: "form-control" %>
 
       <%= f.label :work_place_of_user, class: "label-user--edit" %>
-      <%= f.select :work_place_of_user, {'大阪本社': "大阪本社", '東京支社': '東京支社', '名古屋支社': '名古屋支社'}, 
+      <%= f.select :work_place_of_user, {'大阪': "大阪", '東京': '東京', '名古屋': '名古屋'}, 
       { include_blank: '選択してください'}, { class: 'form-control' , required: true } %>
 
       <%= f.label :employment_status, class: "label-user--edit" %>
