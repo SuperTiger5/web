@@ -4,10 +4,5 @@
   <% unless logged_in? %>
     <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>
     <p>アカウント作成は<%= link_to "こちら", signup_path %>から</p>
-  <% else %>
-    <% if current_user.admin? && @attendances = Attendance.where(worked_on: Date.current, overtime_request: "1", overtime_approval: "0") %>
-     <%= link_to "残業申請者一覧", request_users_path, class: "btn btn-primary" %>
-     <%= link_to "残業を許可した従業員一覧", approval_users_path, class: "btn btn-success" %>
-    <% end %>
   <% end %>
 </div>
