@@ -82,10 +82,10 @@
               <% else %>
                 残業申請中です。<%= link_to "残業申請をキャンセル", cancel_request_user_attendance_path(@user, day), method: :delete,
                                 data: { confirm: "残業申請をキャンセルしますか？" },
-                                class: "btn btn-danger" %>
+                                class: "btn btn-danger pull-right" %>
               <% end %>
             <% elsif day.worked_on == Date.current && day.overtime_approval == "1" %>
-                残業は許可されました。
+                残業は承認されました。
             <% end %>
             <% end %>
           </td>

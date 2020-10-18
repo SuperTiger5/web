@@ -51,14 +51,15 @@ class AttendancesController < ApplicationController
       flash[:danger] = "無効な入力データがあった為、更新をキャンセルしました。"
       redirect_to attendances_edit_one_month_user_url(date: params[:date])
   end
-
-  def update_request
-    @attendance.update_attributes!(overtime_request: "1")
-    redirect_to user_url(@user)
-  end
   
   def request_users
     @attendances = Attendance.where(worked_on: Date.current, overtime_request: "1", overtime_approval: nil)
+  end
+  
+  def update_request
+    @attendance.update_attributes!(overtime_request: "1")
+    flash[:success] = "管理者に残業申請しました。"
+    redirect_to user_url(@user)
   end
   
   def approval_users
@@ -67,16 +68,21 @@ class AttendancesController < ApplicationController
   
   def update_approval
     @attendance.update_attributes!(overtime_approval: "1")
+    @user = User.find(@attendance.user_id)
+    flash[:success] = "#{@user.name}の残業申請を承認しました。"
     redirect_to @user
   end
   
   def cancel_request
     @attendance.update_attributes(overtime_request: nil)
+    flash[:danger] = "残業申請をキャンセルしました。"
     redirect_to @user
   end
   
   def cancel_approval
     @attendance.update_attributes(overtime_request: nil, overtime_approval: nil)
+    @user = User.find(@attendance.user_id)
+    flash[:danger] = "#{@user.name}の残業承認を取り消しました。"
     redirect_to @user
   end
   
