@@ -23,4 +23,15 @@ module UsersHelper
   def work
     @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
   end
+  
+  def request_users_num
+    attendances = Attendance.where(worked_on: Date.current, overtime_request: "1", overtime_approval: nil)
+    @num = attendances.count
+  end
+  
+  def approval_users_num
+    attendances = Attendance.where(worked_on: Date.current, overtime_approval: "1")
+    @num = attendances.count
+  end
+  
 end

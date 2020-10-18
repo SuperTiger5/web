@@ -3,20 +3,21 @@
     <%= link_to "勤怠管理web", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        
-          <% attendances = Attendance.where(overtime_request: "1", overtime_approval: nil) %>
-          <% num = attendances.count %>
-          <% if num >= 1 %>
-            <li><%= link_to "残業申請者が#{num}名います", root_path, class: "abc" %></li>
-          <% else  %>
-            <li><%= link_to "トップへ", root_path %></li>
-          <% end %>
-        
-        <% if logged_in? %>
+          <li><%= link_to "トップへ", root_path %></li>
+          <% if logged_in? %>
           <% if current_user.admin? %>
             <li><%= link_to "従業員一覧", users_path %></li>
             <li><%= link_to "出勤中従業員", working_user_path %></li>
             <li><%= link_to "基本情報の修正", edit_basic_info_user_path(current_user) %></li>
+            <% request_users_num %>
+            <% if @num >= 1 %>
+              <li><%= link_to "残業申請者が#{@num}名います", request_users_path, class: "abc" %></li>
+            <% end %>
+            <% approval_users_num %>
+            <% if @num >= 1 %>
+              <li><%= link_to "残業承認者一覧", approval_users_path %></li>
+            <% end %>
+            
           <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
