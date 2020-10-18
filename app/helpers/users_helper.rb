@@ -15,4 +15,12 @@ module UsersHelper
           end
     return css_class
   end
+  
+  def index_place(x)
+    @users = User.where(work_place_of_user: x).paginate(page: params[:page], per_page: 20).search(params[:search])
+  end
+  
+  def work
+    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+  end
 end

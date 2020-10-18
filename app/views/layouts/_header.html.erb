@@ -3,7 +3,15 @@
     <%= link_to "勤怠管理web", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "トップへ", root_path %></li>
+        
+          <% attendances = Attendance.where(overtime_request: "1", overtime_approval: nil) %>
+          <% num = attendances.count %>
+          <% if num >= 1 %>
+            <li><%= link_to "残業申請者が#{num}名います", root_path, class: "abc" %></li>
+          <% else  %>
+            <li><%= link_to "トップへ", root_path %></li>
+          <% end %>
+        
         <% if logged_in? %>
           <% if current_user.admin? %>
             <li><%= link_to "従業員一覧", users_path %></li>

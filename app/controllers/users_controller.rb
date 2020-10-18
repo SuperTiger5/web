@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include UsersHelper
+  
   before_action :set_user, only: [:show, :destroy, :edit, :update, :edit_basic_info, :update_basic_info]
   before_action :logged_in_user, only: [:show, :index, :destroy, :edit, :update, :index_osaka, :index_tokyo, :index_nagoya,
                                         :working_user_osaka, :working_user_tokyo, :working_user_nagoya]
@@ -27,15 +29,15 @@ class UsersController < ApplicationController
   end
   
   def index_osaka
-    @users = User.where(work_place_of_user: "大阪").paginate(page: params[:page], per_page: 20).search(params[:search])
+    index_place("大阪")
   end
   
   def index_tokyo
-    @users = User.where(work_place_of_user: "東京").paginate(page: params[:page], per_page: 20).search(params[:search])
+    index_place("東京")
   end
   
   def index_nagoya
-    @users = User.where(work_place_of_user: "名古屋").paginate(page: params[:page], per_page: 20).search(params[:search])
+    index_place("名古屋")
   end
   
   def show
@@ -77,19 +79,19 @@ class UsersController < ApplicationController
   end
   
   def working_user
-    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+    work
   end
   
   def working_user_osaka
-    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+    work
   end
   
   def working_user_tokyo
-    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+    work
   end
   
   def working_user_nagoya
-    @attendances = Attendance.where(finished_at: nil, worked_on: Date.current).where.not(started_at: nil, )
+    work
   end
     
   private
