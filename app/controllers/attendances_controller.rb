@@ -7,6 +7,7 @@ class AttendancesController < ApplicationController
                                                  :approval_users, :update_approval, :cancel_approval, :request_users]
   before_action :admin_user, only: [:update_approval, :cancel_approval, :request_users, :approval_users]
   before_action :set_one_month, only: :edit_one_month
+  before_action :set_overtime, only: [:update_request, :update_approval, :cancel_request, :cancel_approval]
   
   UPDATE_ERROR_MSG = "勤怠登録に失敗しました。やり直してください。"
   
@@ -52,8 +53,6 @@ class AttendancesController < ApplicationController
   end
 
   def update_request
-    @user = User.find(params[:user_id])
-    @attendance = Attendance.find(params[:id])
     @attendance.update_attributes!(overtime_request: "1")
     redirect_to user_url(@user)
   end
@@ -67,22 +66,16 @@ class AttendancesController < ApplicationController
   end
   
   def update_approval
-    @user = User.find(params[:user_id])
-    @attendance = Attendance.find(params[:id])
     @attendance.update_attributes!(overtime_approval: "1")
     redirect_to @user
   end
   
   def cancel_request
-    @user = User.find(params[:user_id])
-    @attendance = Attendance.find(params[:id])
     @attendance.update_attributes(overtime_request: nil)
     redirect_to @user
   end
   
   def cancel_approval
-    @user = User.find(params[:user_id])
-    @attendance = Attendance.find(params[:id])
     @attendance.update_attributes(overtime_request: nil, overtime_approval: nil)
     redirect_to @user
   end
@@ -99,6 +92,11 @@ class AttendancesController < ApplicationController
         flash[:danger] = "編集権限がありません"
         redirect_to(root_url)
       end
+    end
+    
+    def set_overtime
+      @user = User.find(params[:user_id])
+      @attendance = Attendance.find(params[:id])
     end
     
 end
